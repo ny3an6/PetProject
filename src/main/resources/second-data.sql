@@ -1,0 +1,1 @@
+insert into SomeInformation(balance, number, org_name) values (1111, 88885553535, 'asdasd');
