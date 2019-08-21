@@ -5,8 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PtfApiApp {
+public class SimpleProject {
     public static void main(String[] args) {
-        SpringApplication.run(PtfApiApp.class);
+        SpringApplication.run(SimpleProject.class);
     }
 }
