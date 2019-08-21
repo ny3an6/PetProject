@@ -77,7 +77,7 @@ public class FirstDBConfig {
         DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
         dataSourceInitializer.setDataSource(firstDataSource());
         ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
-       // databasePopulator.addScript(new ClassPathResource("first-data.sql"));
+        databasePopulator.addScript(new ClassPathResource("first-data.sql"));
         dataSourceInitializer.setDatabasePopulator(databasePopulator);
         //   dataSourceInitializer.setEnabled(env.getProperty("datasource.security.initialize", Boolean.class, false));
         return dataSourceInitializer;

@@ -4,6 +4,7 @@ package com.nikita.simpleProject.controller;
 import com.nikita.simpleProject.dto.response.ApiMessage;
 import com.nikita.simpleProject.model.first.User;
 import com.nikita.simpleProject.model.first.UserInfo;
+import com.nikita.simpleProject.model.second.SomeInformation;
 import com.nikita.simpleProject.service.UserService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 public class FirstController {
@@ -52,5 +54,15 @@ public class FirstController {
     @GetMapping("/main")
     public UserInfo main(Principal principal){
         return userService.getUserInfo(principal.getName());
+    }
+
+    @ApiOperation(value = "Выводит данные со второй базы")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", response = ApiMessage.class),
+            @ApiResponse(code = 400, message = "Failed to find information secondDb")
+    })
+    @GetMapping("/secondDb")
+    public List<SomeInformation> secondDb(){
+        return userService.getAllFromSecondDB();
     }
 }

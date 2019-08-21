@@ -9,7 +9,9 @@ import com.nikita.simpleProject.model.first.Role;
 import com.nikita.simpleProject.model.first.State;
 import com.nikita.simpleProject.model.first.User;
 import com.nikita.simpleProject.model.first.UserInfo;
+import com.nikita.simpleProject.model.second.SomeInformation;
 import com.nikita.simpleProject.repository.firstrepository.UserInfoRepository;
+import com.nikita.simpleProject.repository.secondrepository.SomeRepository;
 import com.nikita.simpleProject.security.JwtTokenProvider;
 import com.nikita.simpleProject.repository.firstrepository.UserRepository;
 import com.nikita.simpleProject.utils.UserUtils;
@@ -23,6 +25,7 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -42,6 +45,9 @@ public class UserService {
 
     @Autowired
     private UserInfoRepository userInfoRepository;
+
+    @Autowired
+    private SomeRepository someRepository;
 
     public ApiMessage login(User user) {
         String username = user.getLogin();
@@ -86,4 +92,9 @@ public class UserService {
     public User findUserByUsername(@NotNull String username) throws DefaultException {
         return userRepository.findUserByLogin(username);
     }
+
+    public List<SomeInformation> getAllFromSecondDB(){
+        return someRepository.findAll();
+    }
+
 }
