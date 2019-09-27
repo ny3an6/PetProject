@@ -1,7 +1,9 @@
 package com.nikita.simpleProject.controller;
 
 
-import com.nikita.simpleProject.dto.response.ApiMessage;
+import com.nikita.simpleProject.dto.response.LoginResponseDto;
+import com.nikita.simpleProject.dto.user.UserDto;
+import com.nikita.simpleProject.exception.RegistrationException;
 import com.nikita.simpleProject.model.first.User;
 import com.nikita.simpleProject.model.first.UserInfo;
 import com.nikita.simpleProject.model.second.SomeInformation;
@@ -24,28 +26,28 @@ public class FirstController {
 
     @ApiOperation(value = "Log in user")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK", response = ApiMessage.class),
+            @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 400, message = "Failed to log in")
     })
     @PostMapping("/login")
-    public ApiMessage login(@RequestBody User user){
+    public LoginResponseDto login(@RequestBody User user) throws RegistrationException {
         return userService.login(user);
     }
 
-    @ApiOperation(value = "Add user")
+    @ApiOperation(value = "Registry")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK", response = ApiMessage.class),
-            @ApiResponse(code = 400, message = "Failed to create user")
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 400, message = "Failed to registry")
     })
-    @PostMapping("/addUser")
-    public ApiMessage addUser(@RequestBody User user){
+    @PostMapping("/registry")
+    public UserDto addUser(@RequestBody User user) throws RegistrationException {
         return userService.addUser(user);
     }
 
-    @ApiOperation(value = "Выводит данные о пользователе")
+    @ApiOperation(value = "Showing data about user")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK", response = ApiMessage.class),
-            @ApiResponse(code = 400, message = "Failed to find information")
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 400, message = "Failed to find user information")
     })
     @ApiImplicitParams({
             @ApiImplicitParam(name = "Authorization", value = "tokenUser", required = true, dataType = "string",
@@ -56,9 +58,9 @@ public class FirstController {
         return userService.getUserInfo(principal.getName());
     }
 
-    @ApiOperation(value = "Выводит данные со второй базы")
+    @ApiOperation(value = "Showing data from second db")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK", response = ApiMessage.class),
+            @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 400, message = "Failed to find information secondDb")
     })
     @GetMapping("/secondDb")

@@ -14,7 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "web_credentials")
+@Table(name = "users")
 @Builder
 public class User implements Serializable {
     @Id
@@ -27,6 +27,10 @@ public class User implements Serializable {
 
     @Column(name = "password")
     private String password;
+
+    @Transient
+    @Column(name = "confirm")
+    private String confirm;
 
     @Column(name = "user_enabled")
     private boolean userEnabled;

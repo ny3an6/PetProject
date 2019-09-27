@@ -1,4 +1,4 @@
-insert into web_credentials(userid, username, password, user_enabled, state) values (1,'asd', '$2a$08$81TqAkBB7BTriimBTNeoL.iD.TdljTjoBWaD12NKmuHNsw5CBxYvW',
+insert into users(userid, username, password, user_enabled, state) values (1,'asd', '$2a$08$81TqAkBB7BTriimBTNeoL.iD.TdljTjoBWaD12NKmuHNsw5CBxYvW',
 true, 'ACTIVE');
 
 insert into user_role(user_id, roles) values (1, 'ROLE_USER');
